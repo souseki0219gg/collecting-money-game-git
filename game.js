@@ -561,8 +561,8 @@ setInterval(updatePriceIndex, 60 * 1000);
 
 
 setInterval(function() {
-    money += moneyPerSecond * 1;
-    totalProduction += moneyPerSecond * 1;
+    money += moneyPerSecond * 0.1;
+    totalProduction += moneyPerSecond * 0.1;
     updateUI();
 }, 100);
 
