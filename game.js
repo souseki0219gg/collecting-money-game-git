@@ -270,14 +270,14 @@ const upgrades = {
     lemonadeStandBoost: {
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 50000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     retailStoreBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 50000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
