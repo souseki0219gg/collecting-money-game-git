@@ -15,7 +15,7 @@
     <button onclick="saveGame()">セーブ</button>
     <button onclick="loadGame()">ロード</button>
 
-
+<div class="left-side">
     <div class="game-info">
         <div id="season-info">
             <strong>現在の季節:</strong>
@@ -39,130 +39,132 @@
         </div>
     </div>
 
-    <div id="gameLog" style="border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: auto;">
+    <div id="gameLog" style="float: left; width: 100%; border: 1px solid #ccc; padding: 10px; height: 335px; overflow-y: auto;">
         <!-- ここにログが追加されます -->
     </div>
+</div>
 
-    <div style="height:400px; overflow:auto;">
+    <div class="right-side">
+        <div style="height:270px; overflow:auto;">
+            <div>
+                クリック強化 レベル: <span id="clickBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('clickBoost')">クリック強化を購入 (<span id="clickBoostCost">50</span>円)</button>
 
-    <div>
-        クリック強化 レベル: <span id="clickBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('clickBoost')">クリック強化を購入 (<span id="clickBoostCost">50</span>円)</button>
+            <div>
+                クリッカーバイト強化 レベル: <span id="clickerBiteBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('clickerBiteBoost')">クリッカーバイト強化を購入 (<span id="clickerBiteBoostCost">50,000</span>円)</button>
+            
 
-    <div>
-        クリッカーバイト強化 レベル: <span id="clickerBiteBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('clickerBiteBoost')">クリッカーバイト強化を購入 (<span id="clickerBiteBoostCost">50,000</span>円)</button>
-    
+            <div>
+                レモネードスタンド強化 レベル: <span id="lemonadeStandBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('lemonadeStandBoost')">レモネードスタンド強化を購入 (<span id="lemonadeStandBoostCost">1,000</span>円)</button>
+            
 
-    <div>
-        レモネードスタンド強化 レベル: <span id="lemonadeStandBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('lemonadeStandBoost')">レモネードスタンド強化を購入 (<span id="lemonadeStandBoostCost">1,000</span>円)</button>
-    
+            <div>
+                リテールストア強化 レベル: <span id="retailStoreBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('retailStoreBoost')">リテールストア強化を購入 (<span id="retailStoreBoostCost">1,000</span>円)</button>
 
-    <div>
-        リテールストア強化 レベル: <span id="retailStoreBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('retailStoreBoost')">リテールストア強化を購入 (<span id="retailStoreBoostCost">1,000</span>円)</button>
+            <div>
+                高級レストラン強化 レベル: <span id="expensiveRestaurantBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('expensiveRestaurantBoost')">高級レストラン強化を購入 (<span id="expensiveRestaurantBoostCost">1,000</span>円)</button>
+            
 
-    <div>
-        高級レストラン強化 レベル: <span id="expensiveRestaurantBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('expensiveRestaurantBoost')">高級レストラン強化を購入 (<span id="expensiveRestaurantBoostCost">1,000</span>円)</button>
-    
+            <div>
+                テーマパーク強化 レベル: <span id="themeParkBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('themeParkBoost')">テーマパーク強化を購入 (<span id="themeParkBoostCost">1,000</span>円)</button>
+            
+            <div>
+                金鉱強化 レベル: <span id="goldMineBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('goldMineBoost')">金鉱強化を購入 (<span id="goldMineBoostCost">1,000</span>円)</button>
 
-    <div>
-        テーマパーク強化 レベル: <span id="themeParkBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('themeParkBoost')">テーマパーク強化を購入 (<span id="themeParkBoostCost">1,000</span>円)</button>
-    
-    <div>
-        金鉱強化 レベル: <span id="goldMineBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('goldMineBoost')">金鉱強化を購入 (<span id="goldMineBoostCost">1,000</span>円)</button>
+            <div>
+                ロボット工場強化 レベル: <span id="robotFactoryBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('robotFactoryBoost')">ロボット工場強化を購入 (<span id="robotFactoryBoostCost">1,000</span>円)</button>
+            
+            <div>
+                銀行強化 レベル: <span id="banksBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('banksBoost')">銀行強化を購入 (<span id="banksBoostCost">1,000</span>円)</button>
+            
+            <div>
+                カジノリゾート強化 レベル: <span id="casinoResortBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('casinoResortBoost')">カジノリゾート強化を購入 (<span id="casinoResortBoostCost">1,000</span>円)</button>
+            
+            <div>
+                AI都市強化 レベル: <span id="aiCityBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('aiCityBoost')">AI都市強化を購入 (<span id="aiCityBoostCost">1,000</span>円)</button>
 
-    <div>
-        ロボット工場強化 レベル: <span id="robotFactoryBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('robotFactoryBoost')">ロボット工場強化を購入 (<span id="robotFactoryBoostCost">1,000</span>円)</button>
-    
-    <div>
-        銀行強化 レベル: <span id="banksBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('banksBoost')">銀行強化を購入 (<span id="banksBoostCost">1,000</span>円)</button>
-    
-    <div>
-        カジノリゾート強化 レベル: <span id="casinoResortBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('casinoResortBoost')">カジノリゾート強化を購入 (<span id="casinoResortBoostCost">1,000</span>円)</button>
-    
-    <div>
-        AI都市強化 レベル: <span id="aiCityBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('aiCityBoost')">AI都市強化を購入 (<span id="aiCityBoostCost">1,000</span>円)</button>
+            <div>
+                仮想国家強化 レベル: <span id="virtualNationStateBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('virtualNationStateBoost')">仮想国家強化を購入 (<span id="virtualNationStateBoostCost">1,000</span>円)</button>
+            
+            <div>
+                宇宙ステーション強化 レベル: <span id="spaceStationBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('spaceStationBoost')">宇宙ステーション強化を購入 (<span id="spaceStationBoostCost">1,000</span>円)</button>
+            
+            
+            <div>
+                ドリームマシン強化 レベル: <span id="dreamMachineBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('dreamMachineBoost')">ドリームマシン強化を購入 (<span id="dreamMachineBoostCost">1,000</span>円)</button>
+            
+            <div>
+                量子コンピューターセンター強化 レベル: <span id="quantumComputerCenterBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('quantumComputerCenterBoost')">量子コンピューターセンター強化を購入 (<span id="quantumComputerCenterBoostCost">1,000</span>円)</button>
+            
+            <div>
+                マインドコントロールタワー強化 レベル: <span id="mindControlTowerBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('mindControlTowerBoost')">マインドコントロールタワー強化を購入 (<span id="mindControlTowerBoostCost">1,000</span>円)</button>
+            
+            <div>
+                人工惑星強化 レベル: <span id="artificialPlanetBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('artificialPlanetBoost')">人工惑星強化を購入 (<span id="artificialPlanetBoostCost">1,000</span>円)</button>
 
-    <div>
-        仮想国家強化 レベル: <span id="virtualNationStateBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('virtualNationStateBoost')">仮想国家強化を購入 (<span id="virtualNationStateBoostCost">1,000</span>円)</button>
-    
-    <div>
-        宇宙ステーション強化 レベル: <span id="spaceStationBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('spaceStationBoost')">宇宙ステーション強化を購入 (<span id="spaceStationBoostCost">1,000</span>円)</button>
-    
-    
-    <div>
-        ドリームマシン強化 レベル: <span id="dreamMachineBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('dreamMachineBoost')">ドリームマシン強化を購入 (<span id="dreamMachineBoostCost">1,000</span>円)</button>
-    
-    <div>
-        量子コンピューターセンター強化 レベル: <span id="quantumComputerCenterBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('quantumComputerCenterBoost')">量子コンピューターセンター強化を購入 (<span id="quantumComputerCenterBoostCost">1,000</span>円)</button>
-    
-    <div>
-        マインドコントロールタワー強化 レベル: <span id="mindControlTowerBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('mindControlTowerBoost')">マインドコントロールタワー強化を購入 (<span id="mindControlTowerBoostCost">1,000</span>円)</button>
-    
-    <div>
-        人工惑星強化 レベル: <span id="artificialPlanetBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('artificialPlanetBoost')">人工惑星強化を購入 (<span id="artificialPlanetBoostCost">1,000</span>円)</button>
+            <div>
+                宇宙植民地強化 レベル: <span id="spaceColonyBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('spaceColonyBoost')">宇宙植民地強化を購入 (<span id="spaceColonyBoostCost">1,000</span>円)</button>
 
-    <div>
-        宇宙植民地強化 レベル: <span id="spaceColonyBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('spaceColonyBoost')">宇宙植民地強化を購入 (<span id="spaceColonyBoostCost">1,000</span>円)</button>
-
-    <div>
-        タイムトラベル代理店強化 レベル: <span id="timeTravelAgencyBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('timeTravelAgencyBoost')">タイムトラベル代理店強化を購入 (<span id="timeTravelAgencyBoostCost">1,000</span>円)</button>
-    
-    <div>
-        次元ゲート強化 レベル: <span id="dimensionGateBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('dimensionGateBoost')">次元ゲート強化を購入 (<span id="dimensionGateBoostCost">1,000</span>円)</button>
-    
-    <div>
-        チーター強化 レベル: <span id="cheetahBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('cheetahBoost')">チーター強化を購入 (<span id="cheetahBoostCost">1,000</span>円)</button>
-    
+            <div>
+                タイムトラベル代理店強化 レベル: <span id="timeTravelAgencyBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('timeTravelAgencyBoost')">タイムトラベル代理店強化を購入 (<span id="timeTravelAgencyBoostCost">1,000</span>円)</button>
+            
+            <div>
+                次元ゲート強化 レベル: <span id="dimensionGateBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('dimensionGateBoost')">次元ゲート強化を購入 (<span id="dimensionGateBoostCost">1,000</span>円)</button>
+            
+            <div>
+                チーター強化 レベル: <span id="cheetahBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('cheetahBoost')">チーター強化を購入 (<span id="cheetahBoostCost">1,000</span>円)</button>
+            
 
 
-    <div>
-        全体の生産強化 レベル: <span id="overallProductionBoostLevel">0</span>
-    </div>
-    <button onclick="buyUpgrade('overallProductionBoost')">全体の生産を強化 (<span id="overallProductionBoostCost">100,000</span>円)</button>
-    </div>
+            <div>
+                全体の生産強化 レベル: <span id="overallProductionBoostLevel">0</span>
+            </div>
+            <button onclick="buyUpgrade('overallProductionBoost')">全体の生産を強化 (<span id="overallProductionBoostCost">100,000</span>円)</button>
+        </div>
     
-    <div style="height:400px; overflow:auto;">
+    
+    <div style="height: 270px; overflow:auto;">
     
     <!-- clickerBite -->
     <div>Clicker Bite: <span id="clickerBiteCount">0</span></div>
@@ -296,7 +298,9 @@
 <br/>
 <button onclick="sellBuilding('cheetah')">Clicker Biteを売却 (売却価格: <span id='cheetahSellPrice'>0</span>円)</button>
 
+</div>
 <div>
+
 
 <script src="game.js"></script>
 </body>

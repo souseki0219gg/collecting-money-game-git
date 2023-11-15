@@ -27,10 +27,19 @@
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     margin-bottom: 10px;
+    width: 100%; /* 幅を調整して、左側にどの程度のスペースを取るか決定 */
+    
+}
+
+.left-side {
+    float: left;
+    width: 30%; /* 必要に応じて調整 */
 }
 
 #season-info, #weather-info {
     margin: 5px 0;
 }
 
-
+.right-side {
+    float: right;
+}

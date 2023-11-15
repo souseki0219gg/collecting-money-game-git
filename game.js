@@ -18,129 +18,129 @@ let totalProduction = 0;
 let buildings = {
     clickerBite: {
         count: 0,
-        baseCost: 15,
-        costIncrement: 5,
-        productionRate: 0.1
+        baseCost: 50,
+        costIncrement: 10,
+        productionRate:0.1
     },
     lemonadeStand: {
         count: 0,
-        baseCost: 100,
-        costIncrement: 25,
+        baseCost: 500,
+        costIncrement: 50,
         productionRate: 1
     },
     retailStore: {
         count: 0,
-        baseCost: 1100,
-        costIncrement: 125,
-        productionRate: 25
+        baseCost: 3000,
+        costIncrement: 300,
+        productionRate: 10
     },
     organicFarm: {
         count: 0,
-        baseCost: 15000,
-        costIncrement: 5000,
-        productionRate: 125
+        baseCost: 10000,
+        costIncrement: 700,
+        productionRate: 15
     },
     expensiveRestaurant:{
         count: 0,
-        baseCost: 100000,
-        costIncrement: 30000,
-        productionRate: 600
+        baseCost: 15000,
+        costIncrement:  1000,
+        productionRate: 30
     },
     themePark:{
         count: 0,
-        baseCost: 500000,
-        costIncrement: 150000,
-        productionRate: 3000
+        baseCost: 75000,
+        costIncrement: 5000,
+        productionRate: 60
     },
     goldMine:{
         count: 0,
-        baseCost: 2000000,
-        costIncrement: 700000,
-        productionRate: 10000
+        baseCost: 400000,
+        costIncrement: 20000,
+        productionRate: 120
     },
     robotFactory:{
         count: 0,
-        baseCost: 10000000,
-        costIncrement: 3000000,
-        productionRate: 50000
+        baseCost: 2000000,
+        costIncrement:  100000,
+        productionRate: 300
     },
     banks:{
         count: 0,
-        baseCost: 50000000,
-        costIncrement: 15000000,
-        productionRate: 200000
+        baseCost: 10000000,
+        costIncrement:  500000,
+        productionRate: 1500
     },
     casinoResort:{
         count: 0,
-        baseCost: 250000000,
-        costIncrement: 80000000,
-        productionRate: 1000000
+        baseCost: 50000000,
+        costIncrement: 2500000,
+        productionRate: 7500
     },
     aiCity:{
         count: 0,
-        baseCost: 1000000000,
-        costIncrement: 350000000,
-        productionRate: 5000000
+        baseCost: 250000000,
+        costIncrement: 12500000,
+        productionRate: 15000
     },
     virtualNationState:{
         count: 0,
-        baseCost: 4000000000,
-        costIncrement: 1400000000,
-        productionRate: 20000000
+        baseCost: 1250000000,
+        costIncrement: 60000000,
+        productionRate: 30000
     },
     spaceStation:{
         count: 0,
-        baseCost: 15000000000,
-        costIncrement: 6000000000,
-        productionRate: 80000000
+        baseCost: 6000000000,
+        costIncrement: 300000000,
+        productionRate: 60000
     },
     dreamMachine:{
         count: 0,
-        baseCost: 60000000000,
-        costIncrement: 25000000000,
-        productionRate: 320000000
+        baseCost:  30000000000,
+        costIncrement: 1500000000,
+        productionRate:  120000
     },
     quantumComputerCenter:{
         count: 0,
-        baseCost: 250000000000,
-        costIncrement: 100000000000,
-        productionRate: 1300000000
+        baseCost: 150000000000,
+        costIncrement: 7500000000,
+        productionRate: 240000
     },
     mindControlTower:{
         count: 0,
-        baseCost: 1000000000000,
-        costIncrement: 450000000000,
-        productionRate: 5500000000
+        baseCost: 750000000000,
+        costIncrement:  37500000000,
+        productionRate: 480000
     },
     artificialPlanet:{
         count: 0,
         baseCost: 4000000000000,
-        costIncrement: 1700000000000,
-        productionRate: 23000000000
+        costIncrement: 200000000000,
+        productionRate: 960000
     },
     spaceColony:{
         count: 0,
-        baseCost: 16000000000000,
-        costIncrement: 7000000000000,
-        productionRate: 95000000000
+        baseCost: 20000000000000,
+        costIncrement: 1000000000000,
+        productionRate: 1920000
     },
     timeTravelAgency:{
         count: 0,
-        baseCost: 65000000000000,
-        costIncrement: 28000000000000,
-        productionRate: 400000000000
+        baseCost:  100000000000000,
+        costIncrement: 5000000000000,
+        productionRate:  3840000
     },
     dimensionGate:{
         count: 0,
-        baseCost: 250000000000000,
-        costIncrement: 110000000000000,
-        productionRate: 1700000000000
+        baseCost: 500000000000000,
+        costIncrement: 25000000000000,
+        productionRate: 7680000
     },
     cheetah:{
         count: 0,
-        baseCost: 1000000000000000,
-        costIncrement: 450000000000000,
-        productionRate: 7200000000000
+        baseCost: 2500000000000000,
+        costIncrement:  125000000000000,
+        productionRate:  15360000
     },
 };
 
@@ -230,8 +230,50 @@ function adjustFacilityProfitByWeather(facilityKey, facility) {
 function formatMoney(amount) {
     let unit = "";
     let displayAmount = amount;
-    
-    if (amount >= 1e12) {
+
+    if (amount >= 1e68) {
+        unit = "無量大数";
+        displayAmount = amount / 1e68;
+    } else if (amount >= 1e64) {
+        unit = "不可思議";
+        displayAmount = amount / 1e64;
+    } else if (amount >= 1e60) {
+        unit = "那由他";
+        displayAmount = amount / 1e60;
+    } else if (amount >= 1e56) {
+        unit = "阿僧祇";
+        displayAmount = amount / 1e56;
+    } else if (amount >= 1e52) {
+        unit = "恒河沙";
+        displayAmount = amount / 1e52;
+    } else if (amount >= 1e48) {
+        unit = "極";
+        displayAmount = amount / 1e48;
+    } else if (amount >= 1e44) {
+        unit = "載";
+        displayAmount = amount / 1e44;
+    } else if (amount >= 1e40) {
+        unit = "正";
+        displayAmount = amount / 1e40;
+    } else if (amount >= 1e36) {
+        unit = "澗";
+        displayAmount = amount / 1e36;
+    } else if (amount >= 1e32) {
+        unit = "溝";
+        displayAmount = amount / 1e32;
+    } else if (amount >= 1e28) {
+        unit = "穣";
+        displayAmount = amount / 1e28;
+    } else if (amount >= 1e24) {
+        unit = "𥝱";
+        displayAmount = amount / 1e24;
+    } else if (amount >= 1e20) {
+        unit = "垓";
+        displayAmount = amount / 1e20;
+    } else if (amount >= 1e16) {
+        unit = "京";
+        displayAmount = amount / 1e16;
+    } else if (amount >= 1e12) {
         unit = "兆";
         displayAmount = amount / 1e12;
     } else if (amount >= 1e8) {
@@ -247,6 +289,19 @@ function formatMoney(amount) {
 
 
 
+const maxLogSize = 100;  // ログの最大サイズを設定
+
+function addMessageToLog(message) {
+    gameLog.push(message);
+
+    // ログのサイズが最大サイズを超えた場合、最も古いメッセージを削除
+    if (gameLog.length > maxLogSize) {
+        gameLog.shift();  // 配列の最初の要素を削除
+    }
+
+    displayLog();  // ログを即座に更新
+}
+
 
 
 
@@ -257,14 +312,14 @@ const upgrades = {
         maxLevel: 15,  // 最大レベルを設定
         baseCost: 50000,
         costIncrement: 20,
-        baseBoostAmount: 1  // 初期のboostAmountを設定
+        baseBoostAmount: 0.1  // 初期のboostAmountを設定
     },
     clickerBiteBoost: {
         level: 0,
         maxLevel: 15,  // 最大レベルを設定
         baseCost: 50000,
         costIncrement: 20,
-        baseBoostAmount: 1  // 初期のboostAmountを設定
+        baseBoostAmount: 0.1  // 初期のboostAmountを設定
     },
     // 他のアップグレードもここに追加できます。
     lemonadeStandBoost: {
@@ -284,133 +339,133 @@ const upgrades = {
     organicFarmBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 50000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     expensiveRestaurantBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 50000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     themeParkBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 100000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     goldMineBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 100000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     robotFactoryBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 100000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     banksBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 100000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     casinoResortBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 100000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     aiCityBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 500000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     virtualNationStateBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 500000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     spaceStationBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 500000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     dreamMachineBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 500000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     quantumComputerCenterBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 1000000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     mindControlTowerBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 1000000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     artificialPlanetBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 1000000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     spaceColonyBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 1000000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     timeTravelAgencyBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 1000000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     dimensionGateBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 50000000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     cheetahBoost:{
         level: 0,
         maxLevel: 15,
-        baseCost: 1000,  // 任意の初期コスト
+        baseCost: 50000000,  // 任意の初期コスト
         costIncrement: 20,
         baseBoostAmount: 0.1  // 10%の生産増加を示す
     },
     overallProductionBoost: {
         level: 0,
         maxLevel: 10,  // 任意の最大レベルを設定
-        baseCost: 100000,  // 任意の初期コスト
+        baseCost: 10000000,  // 任意の初期コスト
         costIncrement: 25,
         baseBoostAmount: 0.05  // 5%の生産増加を示す
     }
@@ -419,7 +474,7 @@ const upgrades = {
 
 function buyUpgrade(type) {
     const upgrade = upgrades[type];
-    const currentCost = upgrade.baseCost * Math.pow(10, upgrade.level);  // 10倍ずつ増えるように変更
+    const currentCost = upgrade.baseCost * Math.pow(3, upgrade.level);  // 10倍ずつ増えるように変更
 
     if (upgrade.level >= upgrade.maxLevel) {
         alert("最大レベルに達しました！");
@@ -700,7 +755,7 @@ document.getElementById("cheetahSellPrice").innerText = formatMoney(getBuildingC
 const clickBoostUpgrade = upgrades.clickBoost;
 const currentCost = clickBoostUpgrade.baseCost + clickBoostUpgrade.costIncrement * clickBoostUpgrade.level;
 
-document.getElementById("clickBoostCost").innerText = currentCost;
+document.getElementById("clickBoostCost").innerText = formatMoney(currentCost);
 document.getElementById("clickBoostLevel").innerText = clickBoostUpgrade.level;
 
 // クリッカーバイト強化の情報を更新
