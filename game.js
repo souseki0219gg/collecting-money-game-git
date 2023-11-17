@@ -144,6 +144,63 @@ let buildings = {
     },
 };
 
+let stockPrice = 100; // 株の初期価格
+let playerStocks = 0; // プレイヤーが持っている株の数
+
+const stockPricePatterns = {
+    rising: { chance: 20, change: () => Math.floor(Math.random() * 10 + 5) },
+    falling: { chance: 20, change: () => -Math.floor(Math.random() * 10 + 5) },
+    volatile: { chance: 25, change: () => Math.floor(Math.random() * 20) - 10 },
+    stable: { chance: 25, change: () => Math.floor(Math.random() * 5) - 2 },
+    crash: { chance: 5, change: () => -Math.floor(Math.random() * 30 + 20) }, // 新しいパターン: 大暴落
+    surge: { chance: 5, change: () => Math.floor(Math.random() * 30 + 20) } // 新しいパターン: 大暴騰
+};
+
+
+let currentPattern = "stable";
+
+
+// 季節ごとの株価変動幅
+const stockPriceFluctuation = {
+    "春": 5,
+    "夏": 10,
+    "秋": 15,
+    "冬": 20
+};
+
+function updateStockPrice() {
+    let pattern = stockPricePatterns[currentPattern];
+    let change = pattern.change();
+
+    stockPrice += change;
+    stockPrice = Math.max(1, stockPrice);
+
+    gameLog.push(`株価が更新されました: ${stockPrice}`);
+    displayLog();
+    document.getElementById("currentStockPrice").textContent = stockPrice;
+
+    if (Math.random() * 100 < pattern.chance) {
+        currentPattern = selectNewPattern();
+    }
+}
+
+function selectNewPattern() {
+    let totalChance = 0;
+    let patterns = Object.keys(stockPricePatterns);
+    let randomValue = Math.random() * 100;
+
+    for (let i = 0; i < patterns.length; i++) {
+        totalChance += stockPricePatterns[patterns[i]].chance;
+        if (randomValue <= totalChance) {
+            return patterns[i];
+        }
+    }
+
+    return "stable"; // デフォルトパターン
+}
+
+
+
 // ログエントリを保存する配列
 let gameLog = [];
 
@@ -171,8 +228,54 @@ if (previousSeason !== currentSeason) {
     document.getElementById("currentSeason").textContent = currentSeason;  // 現在の季節を更新
 }
 
+if (previousSeason !== currentSeason) {
+    playerStocks = 0;
+    gameLog.push(`新しい季節になりました。株券が無効になりました。`);
+    displayLog();
+
+    // 株券の表示を更新
+    document.getElementById("playerStocks").textContent = playerStocks;
+}
+
     changeWeather();  // 季節が変わるたびに天気も変える
 }
+
+function buyStocks() {
+    let amountToBuy = parseInt(document.getElementById("stockAmount").value);
+    let totalCost = amountToBuy * stockPrice;
+
+    if (amountToBuy > 0 && money >= totalCost) {
+        money -= totalCost;
+        playerStocks += amountToBuy;
+        gameLog.push(`${amountToBuy} 株を購入しました。`);
+        displayLog();
+
+        // お金と株券の表示を更新
+        document.getElementById("money").textContent = money;
+        document.getElementById("playerStocks").textContent = playerStocks;
+    } else {
+        alert("購入できる株の数が不足しているか、お金が足りません。");
+    }
+}
+
+function sellStocks() {
+    let amountToSell = parseInt(document.getElementById("sellStockAmount").value);
+
+    if (amountToSell > 0 && playerStocks >= amountToSell) {
+        playerStocks -= amountToSell;
+        let totalEarnings = amountToSell * stockPrice;
+        money += totalEarnings;
+        gameLog.push(`${amountToSell} 株を売却しました。`);
+        displayLog();
+
+        // お金と株券の表示を更新
+        document.getElementById("money").textContent = money;
+        document.getElementById("playerStocks").textContent = playerStocks;
+    } else {
+        alert("売却できる株の数が不足しているか、保有している株が足りません。");
+    }
+}
+
 
 
 // ログを表示する関数
@@ -196,11 +299,13 @@ if (previousWeather !== currentWeather) {
 }
 }
 
+setInterval(updateStockPrice, 5 * 60 * 1000); // 5分ごとに株価を更新
+
 // 例: 10分ごとに季節を変更
-setInterval(changeSeason, 10 * 60 * 1000);
+setInterval(changeSeason, 30 * 60 * 1000);
 
 // 例: 1分ごとに天気を変更
-setInterval(changeWeather, 1 * 60 * 1000);
+setInterval(changeWeather, 3 * 60 * 1000);
 
 
 function adjustFacilityProfitByWeather(facilityKey, facility) {
@@ -781,6 +886,14 @@ const retailStoreCurrentCost = retailStoreUpgrade.baseCost + retailStoreUpgrade.
 document.getElementById("retailStoreBoostCost").innerText = formatMoney(retailStoreCurrentCost);
 document.getElementById("retailStoreBoostLevel").innerText = retailStoreUpgrade.level;
 
+// オーガニック農園強化の情報を更新
+const organicFarmUpgrade = upgrades.organicFarmBoost;
+const organicFarmCurrentCost = organicFarmUpgrade.baseCost + organicFarmUpgrade.costIncrement * organicFarmUpgrade.level;
+
+document.getElementById("organicFarmBoostCost").innerText = formatMoney(organicFarmCurrentCost);
+document.getElementById("organicFarmBoostLevel").innerText = organicFarmUpgrade.level;
+
+
 
 // 高級レストラン強化の情報を更新
 const expensiveRestaurantUpgrade = upgrades.expensiveRestaurantBoost;
@@ -914,6 +1027,8 @@ document.getElementById("overallProductionBoostCost").textContent = formatMoney(
 
 
 
+const maxSaves = 5; // 保持する最大セーブデータ数
+
 function saveGame() {
     const gameState = {
         money: money,
@@ -921,26 +1036,48 @@ function saveGame() {
         moneyPerSecond: moneyPerSecond,
         buildings: buildings
     };
-    localStorage.setItem('gameState', JSON.stringify(gameState));
+
+    // 既存のセーブデータを取得
+    const savedGames = JSON.parse(localStorage.getItem('savedGames')) || [];
+    savedGames.unshift(gameState); // 新しいセーブデータを先頭に追加
+
+    // セーブデータが最大数を超えていたら、古いものを削除
+    while (savedGames.length > maxSaves) {
+        savedGames.pop();
+    }
+
+    localStorage.setItem('savedGames', JSON.stringify(savedGames));
     console.log("Game saved!");
-    console.log("Saved buildings:", buildings);
 }
 
 function loadGame() {
-    const savedData = localStorage.getItem('gameState');
-    if (savedData) {
-        const gameState = JSON.parse(savedData);
+    const savedGames = JSON.parse(localStorage.getItem('savedGames')) || [];
+    if (savedGames.length > 0) {
+        const gameState = savedGames[0]; // 最新のセーブデータを取得
         money = gameState.money;
         moneyPerClick = gameState.moneyPerClick;
         moneyPerSecond = gameState.moneyPerSecond;
         buildings = gameState.buildings;
         console.log("Game loaded!");
-        console.log("Loaded buildings:", buildings);
     } else {
         console.log("No saved game found.");
     }
 }
 
+
+function autoSave() {
+    saveGame();
+    console.log("Auto-saving game...");
+}
+
+// 30秒ごとに自動セーブ
+setInterval(autoSave, 30000); // 30000ミリ秒（30秒）で設定
+
+
+window.onload = function() {
+    loadGame();
+    console.log("Game loaded on page load.");
+};
 
 
 
