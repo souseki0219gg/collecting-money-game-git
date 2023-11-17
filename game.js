@@ -715,7 +715,7 @@ function updatePriceIndex() {
     displayLog();  // ログを即座に更新
 }
 // 1分ごとに物価指数を更新
-setInterval(updatePriceIndex, 60 * 1000);
+setInterval(updatePriceIndex, 5 * 60 * 1000);
 
 
 
