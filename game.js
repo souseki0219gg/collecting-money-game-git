@@ -144,7 +144,7 @@ let buildings = {
     },
 };
 
-let stockPrice = 100; // 株の初期価格
+let stockPrice = 20; // 株の初期価格
 let playerStocks = 0; // プレイヤーが持っている株の数
 
 const stockPricePatterns = {
@@ -225,7 +225,6 @@ function changeSeason() {
 if (previousSeason !== currentSeason) {
     gameLog.push(`季節が ${previousSeason} から ${currentSeason} に変わりました。`);
     displayLog();  // ログを即座に更新
-    document.getElementById("currentSeason").textContent = currentSeason;  // 現在の季節を更新
 }
 
 if (previousSeason !== currentSeason) {
@@ -233,8 +232,6 @@ if (previousSeason !== currentSeason) {
     gameLog.push(`新しい季節になりました。株券が無効になりました。`);
     displayLog();
 
-    // 株券の表示を更新
-    document.getElementById("playerStocks").textContent = playerStocks;
 }
 
     changeWeather();  // 季節が変わるたびに天気も変える
@@ -251,8 +248,6 @@ function buyStocks() {
         displayLog();
 
         // お金と株券の表示を更新
-        document.getElementById("money").textContent = money;
-        document.getElementById("playerStocks").textContent = playerStocks;
     } else {
         alert("購入できる株の数が不足しているか、お金が足りません。");
     }
@@ -295,7 +290,6 @@ function changeWeather() {
 if (previousWeather !== currentWeather) {
     gameLog.push(`天気が ${previousWeather} から ${currentWeather} に変わりました。`);
     displayLog();  // ログを即座に更新
-    document.getElementById("currentWeather").textContent = currentWeather;  // 現在の天気を更新
 }
 }
 
@@ -411,211 +405,6 @@ function addMessageToLog(message) {
 
 
 
-const upgrades = {
-    clickBoost: {
-        level: 0,
-        maxLevel: 15,  // 最大レベルを設定
-        baseCost: 50000,
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 初期のboostAmountを設定
-    },
-    clickerBiteBoost: {
-        level: 0,
-        maxLevel: 15,  // 最大レベルを設定
-        baseCost: 50000,
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 初期のboostAmountを設定
-    },
-    // 他のアップグレードもここに追加できます。
-    lemonadeStandBoost: {
-        level: 0,
-        maxLevel: 15,
-        baseCost: 50000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    retailStoreBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 50000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    organicFarmBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 50000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    expensiveRestaurantBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 50000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    themeParkBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 100000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    goldMineBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 100000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    robotFactoryBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 100000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    banksBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 100000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    casinoResortBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 100000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    aiCityBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 500000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    virtualNationStateBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 500000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    spaceStationBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 500000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    dreamMachineBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 500000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    quantumComputerCenterBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 1000000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    mindControlTowerBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 1000000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    artificialPlanetBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 1000000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    spaceColonyBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 1000000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    timeTravelAgencyBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 1000000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    dimensionGateBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 50000000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    cheetahBoost:{
-        level: 0,
-        maxLevel: 15,
-        baseCost: 50000000,  // 任意の初期コスト
-        costIncrement: 20,
-        baseBoostAmount: 0.1  // 10%の生産増加を示す
-    },
-    overallProductionBoost: {
-        level: 0,
-        maxLevel: 10,  // 任意の最大レベルを設定
-        baseCost: 10000000,  // 任意の初期コスト
-        costIncrement: 25,
-        baseBoostAmount: 0.05  // 5%の生産増加を示す
-    }
-};
-
-
-function buyUpgrade(type) {
-    const upgrade = upgrades[type];
-    const currentCost = upgrade.baseCost * Math.pow(3, upgrade.level);  // 10倍ずつ増えるように変更
-
-    if (upgrade.level >= upgrade.maxLevel) {
-        alert("最大レベルに達しました！");
-        return;
-    }
-
-    if (money >= currentCost) {
-        money -= currentCost;
-        upgrade.level++;
-        
-        if (type === 'clickBoost') {
-            upgrade.boostAmount = upgrade.baseBoostAmount * Math.pow(2, upgrade.level - 1);  // 効率が2倍になる
-            moneyPerClick += upgrade.boostAmount;
-        }
-        
-        if (type === 'lemonadeStandBoost') {
-            // レモネードスタンドの生産率を増加させる
-            const boostAmount = buildings.lemonadeStand.productionRate * upgrade.baseBoostAmount;
-            buildings.lemonadeStand.productionRate += boostAmount;
-        }
-        
-        if (type === 'overallProductionBoost') {
-            // 全体の生産率を増加させる
-            const boostAmount = upgrade.baseBoostAmount * (upgrade.level + 1);  // 現在のレベルに基づく増加量を計算
-            for (let buildingType in buildings) {
-                buildings[buildingType].productionRate *= (1 + boostAmount);
-            }
-        }
-        // 他のアップグレードタイプに対する処理もここで実装できます。
-        
-        updateUI();
-    } else {
-        alert("お金が足りません！");
-    }
-}
-
 
 
 
@@ -729,10 +518,15 @@ setInterval(function() {
 
 // 画面上の情報を更新する関数
 function updateUI() {
+    if (buildings.clickerBite && buildings.clickerBite.count !== undefined) {
+        document.getElementById("clickerBiteCount").innerText = formatMoney(buildings.clickerBite.count);
+    }
     document.getElementById("money").innerText = formatMoney(money) + "円";
 
     document.getElementById('currentSeason').innerText = currentSeason;
     document.getElementById('currentWeather').innerText = currentWeather;
+
+    document.getElementById("playerStocks").textContent = playerStocks;
 
       // 生産量の更新
       productionPerSecond = moneyPerSecond;  // 1秒あたりの生産量はmoneyPerSecondと同じ
@@ -856,173 +650,7 @@ document.getElementById("cheetahCount").innerText = formatMoney(buildings.cheeta
 document.getElementById("cheetahCost").innerText = formatMoney(getBuildingCost('cheetah'));
 document.getElementById("cheetahSellPrice").innerText = formatMoney(getBuildingCost('cheetah') * 0.5 * priceIndex);
 
-  // クリック強化の情報を更新
-const clickBoostUpgrade = upgrades.clickBoost;
-const currentCost = clickBoostUpgrade.baseCost + clickBoostUpgrade.costIncrement * clickBoostUpgrade.level;
 
-document.getElementById("clickBoostCost").innerText = formatMoney(currentCost);
-document.getElementById("clickBoostLevel").innerText = clickBoostUpgrade.level;
-
-// クリッカーバイト強化の情報を更新
-const clickerBiteUpgrade = upgrades.clickerBiteBoost;
-const clickerBiteCurrentCost = clickerBiteUpgrade.baseCost + clickerBiteUpgrade.costIncrement * clickerBiteUpgrade.level;
-
-document.getElementById("clickerBiteBoostCost").innerText = formatMoney(clickerBiteCurrentCost);
-document.getElementById("clickerBiteBoostLevel").innerText = clickerBiteUpgrade.level;
-
-
-// レモネードスタンド強化の情報を更新
-const lemonadeStandUpgrade = upgrades.lemonadeStandBoost;
-const lemonadeStandCurrentCost = lemonadeStandUpgrade.baseCost + lemonadeStandUpgrade.costIncrement * lemonadeStandUpgrade.level;
-
-document.getElementById("lemonadeStandBoostCost").innerText = formatMoney(lemonadeStandCurrentCost);
-document.getElementById("lemonadeStandBoostLevel").innerText = lemonadeStandUpgrade.level;
-
-
-// リテールストア強化の情報を更新
-const retailStoreUpgrade = upgrades.retailStoreBoost;
-const retailStoreCurrentCost = retailStoreUpgrade.baseCost + retailStoreUpgrade.costIncrement * retailStoreUpgrade.level;
-
-document.getElementById("retailStoreBoostCost").innerText = formatMoney(retailStoreCurrentCost);
-document.getElementById("retailStoreBoostLevel").innerText = retailStoreUpgrade.level;
-
-// オーガニック農園強化の情報を更新
-const organicFarmUpgrade = upgrades.organicFarmBoost;
-const organicFarmCurrentCost = organicFarmUpgrade.baseCost + organicFarmUpgrade.costIncrement * organicFarmUpgrade.level;
-
-document.getElementById("organicFarmBoostCost").innerText = formatMoney(organicFarmCurrentCost);
-document.getElementById("organicFarmBoostLevel").innerText = organicFarmUpgrade.level;
-
-
-
-// 高級レストラン強化の情報を更新
-const expensiveRestaurantUpgrade = upgrades.expensiveRestaurantBoost;
-const expensiveRestaurantCurrentCost = expensiveRestaurantUpgrade.baseCost + expensiveRestaurantUpgrade.costIncrement * expensiveRestaurantUpgrade.level;
-
-document.getElementById("expensiveRestaurantBoostCost").innerText = formatMoney(expensiveRestaurantCurrentCost);
-document.getElementById("expensiveRestaurantBoostLevel").innerText = expensiveRestaurantUpgrade.level;
-
-// テーマパーク強化の情報を更新
-const themeParkUpgrade = upgrades.themeParkBoost;
-const themeParkCurrentCost = themeParkUpgrade.baseCost + themeParkUpgrade.costIncrement * themeParkUpgrade.level;
-
-document.getElementById("themeParkBoostCost").innerText = formatMoney(themeParkCurrentCost);
-document.getElementById("themeParkBoostLevel").innerText = themeParkUpgrade.level;
-
-// 金鉱強化の情報を更新
-const goldMineUpgrade = upgrades.goldMineBoost;
-const goldMineCurrentCost = goldMineUpgrade.baseCost + goldMineUpgrade.costIncrement * goldMineUpgrade.level;
-
-document.getElementById("goldMineBoostCost").innerText = formatMoney(goldMineCurrentCost);
-document.getElementById("goldMineBoostLevel").innerText = goldMineUpgrade.level;
-
-// ロボット工場強化の情報を更新
-const robotFactoryUpgrade = upgrades.robotFactoryBoost;
-const robotFactoryCurrentCost = robotFactoryUpgrade.baseCost + robotFactoryUpgrade.costIncrement * robotFactoryUpgrade.level;
-
-document.getElementById("robotFactoryBoostCost").innerText = formatMoney(robotFactoryCurrentCost);
-document.getElementById("robotFactoryBoostLevel").innerText = robotFactoryUpgrade.level
-
-// 銀行強化の情報を更新
-const banksUpgrade = upgrades.banksBoost;
-const banksCurrentCost = banksUpgrade.baseCost + banksUpgrade.costIncrement * banksUpgrade.level;
-
-document.getElementById("banksBoostCost").innerText = formatMoney(banksCurrentCost);
-document.getElementById("banksBoostLevel").innerText = banksUpgrade.level;
-
-// カジノリゾート強化の情報を更新
-const casinoResortUpgrade = upgrades.casinoResortBoost;
-const casinoResortCurrentCost = casinoResortUpgrade.baseCost + casinoResortUpgrade.costIncrement * casinoResortUpgrade.level;
-
-document.getElementById("casinoResortBoostCost").innerText = formatMoney(casinoResortCurrentCost);
-document.getElementById("casinoResortBoostLevel").innerText = casinoResortUpgrade.level;
-
-// AI都市強化の情報を更新
-const aiCityUpgrade = upgrades.aiCityBoost;
-const aiCityCurrentCost = aiCityUpgrade.baseCost + aiCityUpgrade.costIncrement * aiCityUpgrade.level;
-
-document.getElementById("aiCityBoostCost").innerText = formatMoney(aiCityCurrentCost);
-document.getElementById("aiCityBoostLevel").innerText = aiCityUpgrade.level;
-
-// 仮想国家強化の情報を更新
-const virtualNationStateUpgrade = upgrades.virtualNationStateBoost;
-const virtualNationStateCurrentCost = virtualNationStateUpgrade.baseCost + virtualNationStateUpgrade.costIncrement * virtualNationStateUpgrade.level;
-
-document.getElementById("virtualNationStateBoostCost").innerText = formatMoney(virtualNationStateCurrentCost);
-document.getElementById("virtualNationStateBoostLevel").innerText = virtualNationStateUpgrade.level;
-
-// 宇宙ステーション強化の情報を更新
-const spaceStationUpgrade = upgrades.spaceStationBoost;
-const spaceStationCurrentCost = spaceStationUpgrade.baseCost + spaceStationUpgrade.costIncrement * spaceStationUpgrade.level;
-
-document.getElementById("spaceStationBoostCost").innerText = formatMoney(spaceStationCurrentCost);
-document.getElementById("spaceStationBoostLevel").innerText = spaceStationUpgrade.level;
-
-// ドリームマシン強化の情報を更新
-const dreamMachineUpgrade = upgrades.dreamMachineBoost;
-const dreamMachineCurrentCost = dreamMachineUpgrade.baseCost + dreamMachineUpgrade.costIncrement * dreamMachineUpgrade.level;
-
-document.getElementById("dreamMachineBoostCost").innerText = formatMoney(dreamMachineCurrentCost);
-document.getElementById("dreamMachineBoostLevel").innerText = dreamMachineUpgrade.level;
-
-// 量子コンピューターセンター強化の情報を更新
-const quantumComputerCenterUpgrade = upgrades.quantumComputerCenterBoost;
-const quantumComputerCenterCurrentCost = quantumComputerCenterUpgrade.baseCost + quantumComputerCenterUpgrade.costIncrement * quantumComputerCenterUpgrade.level;
-
-document.getElementById("quantumComputerCenterBoostCost").innerText = formatMoney(quantumComputerCenterCurrentCost);
-document.getElementById("quantumComputerCenterBoostLevel").innerText = quantumComputerCenterUpgrade.level;
-
-// マインドコントロールタワー強化の情報を更新
-const mindControlTowerUpgrade = upgrades.mindControlTowerBoost;
-const mindControlTowerCurrentCost = mindControlTowerUpgrade.baseCost + mindControlTowerUpgrade.costIncrement * mindControlTowerUpgrade.level;
-
-document.getElementById("mindControlTowerBoostCost").innerText = formatMoney(mindControlTowerCurrentCost);
-document.getElementById("mindControlTowerBoostLevel").innerText = mindControlTowerUpgrade.level;
-
-// 人工惑星強化の情報を更新
-const artificialPlanetUpgrade = upgrades.artificialPlanetBoost;
-const artificialPlanetCurrentCost = artificialPlanetUpgrade.baseCost + artificialPlanetUpgrade.costIncrement * artificialPlanetUpgrade.level;
-
-document.getElementById("artificialPlanetBoostCost").innerText = formatMoney(artificialPlanetCurrentCost);
-document.getElementById("artificialPlanetBoostLevel").innerText = artificialPlanetUpgrade.level;
-
-// 宇宙植民地強化の情報を更新
-const spaceColonyUpgrade = upgrades.spaceColonyBoost;
-const spaceColonyCurrentCost = spaceColonyUpgrade.baseCost + spaceColonyUpgrade.costIncrement * spaceColonyUpgrade.level;
-
-document.getElementById("spaceColonyBoostCost").innerText = formatMoney(spaceColonyCurrentCost);
-document.getElementById("spaceColonyBoostLevel").innerText = spaceColonyUpgrade.level;
-
-// タイムトラベル代理店強化の情報を更新
-const timeTravelAgencyUpgrade = upgrades.timeTravelAgencyBoost;
-const timeTravelAgencyCurrentCost = timeTravelAgencyUpgrade.baseCost + timeTravelAgencyUpgrade.costIncrement * timeTravelAgencyUpgrade.level;
-
-document.getElementById("timeTravelAgencyBoostCost").innerText = formatMoney(timeTravelAgencyCurrentCost);
-document.getElementById("timeTravelAgencyBoostLevel").innerText = timeTravelAgencyUpgrade.level;
-
-// 次元ゲート強化の情報を更新
-const dimensionGateUpgrade = upgrades.dimensionGateBoost;
-const dimensionGateCurrentCost = dimensionGateUpgrade.baseCost + dimensionGateUpgrade.costIncrement * dimensionGateUpgrade.level;
-
-document.getElementById("dimensionGateBoostCost").innerText = formatMoney(dimensionGateCurrentCost);
-document.getElementById("dimensionGateBoostLevel").innerText = dimensionGateUpgrade.level;
-
-// チーター強化の情報を更新
-const cheetahUpgrade = upgrades.cheetahBoost;
-const cheetahCurrentCost = cheetahUpgrade.baseCost + cheetahUpgrade.costIncrement * cheetahUpgrade.level;
-
-document.getElementById("cheetahBoostCost").innerText = formatMoney(cheetahCurrentCost);
-document.getElementById("cheetahBoostLevel").innerText = cheetahUpgrade.level;
-
-
-
-
- // 全体の生産アップグレードの情報を更新
-const overallUpgrade = upgrades.overallProductionBoost;
-const overallBoostCost = overallUpgrade.baseCost * Math.pow(10, overallUpgrade.level);
-
-document.getElementById("overallProductionBoostLevel").textContent = overallUpgrade.level;
-document.getElementById("overallProductionBoostCost").textContent = formatMoney(overallBoostCost);
 }
 
 
@@ -1034,8 +662,17 @@ function saveGame() {
         money: money,
         moneyPerClick: moneyPerClick,
         moneyPerSecond: moneyPerSecond,
-        buildings: buildings
+        buildings: buildings,
+        playerStocks: playerStocks,
+        maxProduction: maxProduction,
+        totalProduction: totalProduction,
+        currentSeason: currentSeason,
+        currentWeather: currentWeather,
+        stockPrice: stockPrice, // 株価を追加
+        currentPattern: currentPattern, // 株価パターンを追加
+        priceIndex: priceIndex // 物価指数を追加
     };
+
 
     // 既存のセーブデータを取得
     const savedGames = JSON.parse(localStorage.getItem('savedGames')) || [];
@@ -1053,16 +690,44 @@ function saveGame() {
 function loadGame() {
     const savedGames = JSON.parse(localStorage.getItem('savedGames')) || [];
     if (savedGames.length > 0) {
-        const gameState = savedGames[0]; // 最新のセーブデータを取得
+        const gameState = savedGames[0];
         money = gameState.money;
         moneyPerClick = gameState.moneyPerClick;
         moneyPerSecond = gameState.moneyPerSecond;
         buildings = gameState.buildings;
+        if (typeof gameState.playerStocks === 'number') {
+            playerStocks = gameState.playerStocks;
+        }
+        if (typeof gameState.maxProduction === 'number') {
+            maxProduction = gameState.maxProduction;
+        }
+        if (typeof gameState.totalProduction === 'number') {
+            totalProduction = gameState.totalProduction;
+        }
+
+        // 天気と季節をロード
+        // 季節と天気をロード
+        currentSeason = gameState.currentSeason || seasons[0];
+        currentWeather = gameState.currentWeather || weatherBySeason[currentSeason][0];
+        stockPrice = gameState.stockPrice || 20; // デフォルト値を設定
+        currentPattern = gameState.currentPattern || "stable"; // デフォルト値を設定
+        priceIndex = gameState.priceIndex || 1.0; // デフォルト値を設定
+
+          // ロード後の表示更新
+        document.getElementById("currentStockPrice").textContent = stockPrice;
+        document.getElementById("currentSeason").textContent = currentSeason;
+        document.getElementById("currentWeather").textContent = currentWeather;
+        document.getElementById("playerStocks").textContent = ` ${playerStocks}`;
+
+
         console.log("Game loaded!");
     } else {
         console.log("No saved game found.");
     }
 }
+
+
+
 
 
 function autoSave() {
@@ -1079,5 +744,158 @@ window.onload = function() {
     console.log("Game loaded on page load.");
 };
 
+function resetGame() {
+    if (confirm("ゲームをリセットしてもよろしいですか？")) {
+        // ゲーム変数の初期化とその他の処理
+    
+    // 各変数を初期値にリセット
+    money = 0;
+    moneyPerClick = 1;
+    moneyPerSecond = 0;
+    buildings = {
+        clickerBite: {
+            count: 0,
+            baseCost: 50,
+            costIncrement: 10,
+            productionRate:0.1
+        },
+        lemonadeStand: {
+            count: 0,
+            baseCost: 500,
+            costIncrement: 50,
+            productionRate: 1
+        },
+        retailStore: {
+            count: 0,
+            baseCost: 3000,
+            costIncrement: 300,
+            productionRate: 10
+        },
+        organicFarm: {
+            count: 0,
+            baseCost: 10000,
+            costIncrement: 700,
+            productionRate: 15
+        },
+        expensiveRestaurant:{
+            count: 0,
+            baseCost: 15000,
+            costIncrement:  1000,
+            productionRate: 30
+        },
+        themePark:{
+            count: 0,
+            baseCost: 75000,
+            costIncrement: 5000,
+            productionRate: 60
+        },
+        goldMine:{
+            count: 0,
+            baseCost: 400000,
+            costIncrement: 20000,
+            productionRate: 120
+        },
+        robotFactory:{
+            count: 0,
+            baseCost: 2000000,
+            costIncrement:  100000,
+            productionRate: 300
+        },
+        banks:{
+            count: 0,
+            baseCost: 10000000,
+            costIncrement:  500000,
+            productionRate: 1500
+        },
+        casinoResort:{
+            count: 0,
+            baseCost: 50000000,
+            costIncrement: 2500000,
+            productionRate: 7500
+        },
+        aiCity:{
+            count: 0,
+            baseCost: 250000000,
+            costIncrement: 12500000,
+            productionRate: 15000
+        },
+        virtualNationState:{
+            count: 0,
+            baseCost: 1250000000,
+            costIncrement: 60000000,
+            productionRate: 30000
+        },
+        spaceStation:{
+            count: 0,
+            baseCost: 6000000000,
+            costIncrement: 300000000,
+            productionRate: 60000
+        },
+        dreamMachine:{
+            count: 0,
+            baseCost:  30000000000,
+            costIncrement: 1500000000,
+            productionRate:  120000
+        },
+        quantumComputerCenter:{
+            count: 0,
+            baseCost: 150000000000,
+            costIncrement: 7500000000,
+            productionRate: 240000
+        },
+        mindControlTower:{
+            count: 0,
+            baseCost: 750000000000,
+            costIncrement:  37500000000,
+            productionRate: 480000
+        },
+        artificialPlanet:{
+            count: 0,
+            baseCost: 4000000000000,
+            costIncrement: 200000000000,
+            productionRate: 960000
+        },
+        spaceColony:{
+            count: 0,
+            baseCost: 20000000000000,
+            costIncrement: 1000000000000,
+            productionRate: 1920000
+        },
+        timeTravelAgency:{
+            count: 0,
+            baseCost:  100000000000000,
+            costIncrement: 5000000000000,
+            productionRate:  3840000
+        },
+        dimensionGate:{
+            count: 0,
+            baseCost: 500000000000000,
+            costIncrement: 25000000000000,
+            productionRate: 7680000
+        },
+        cheetah:{
+            count: 0,
+            baseCost: 2500000000000000,
+            costIncrement:  125000000000000,
+            productionRate:  15360000
+        },
+    };
+    playerStocks = 0;
+    stockPrice = 20; // 株の初期価格
+    currentPattern = "stable";
+    priceIndex = 1.0;  // 初期の物価指数
+    maxProduction = 0; // 最大生産数をリセット
+    totalProduction = 0; // 総合生産数をリセット
+    // その他のゲーム関連変数もここでリセット
+
+    // ローカルストレージからゲームデータを削除
+    localStorage.removeItem('savedGames');
+
+    // 必要に応じてUIを更新
+    updateUI();
+
+    console.log("Game has been reset.");
+    }
+}
 
 
