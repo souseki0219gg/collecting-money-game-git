@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お金集めゲーム</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body>
@@ -48,6 +49,149 @@
         </div>
     </div>
 
+
+
+    <div id="gameLog" style="float: left; width: 100%; border: 1px solid #ccc; padding: 10px; height: 280px; overflow-y: auto; background-color: rgba(255, 255, 255, 0.9); /* 半透明の白色 */border-radius: 5px;  /* 角の丸み */">
+        <!-- ここにログが追加されます -->
+    </div>
+</div>
+
+<div class="right-side">
+    <div id="specific-container" style="height: 450px; overflow:auto;">
+        <div>クリッカーバイト: <span id="clickerBiteCount">0</span></div>
+            
+            
+        <button onclick="buyBuilding('clickerBite')">クリッカーバイトを購入 (<span id="clickerBiteCost">15</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('clickerBite')">クリッカーバイトを売却 ( <span id='clickerBiteSellPrice'>0</span>円)</button>
+
+
+        <div>レモネードスタンド: <span id="lemonadeStandCount">0</span></div>
+        
+        
+        <button onclick="buyBuilding('lemonadeStand')">レモネードスタンドを購入 (<span id="lemonadeStandCost">50</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('lemonadeStand')">レモネードスタンドを売却 ( <span id='lemonadeStandSellPrice'>0</span>円)</button>
+
+
+        <div>デパート: <span id="retailStoreCount">0</span></div>
+        
+        
+        <button onclick="buyBuilding('retailStore')">デパートを購入 (<span id="retailStoreCost">200</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('retailStore')">デパートを売却 ( <span id='retailStoreSellPrice'>0</span>円)</button>
+
+        <div>オーガニック農園: <span id="organicFarmCount">0</span></div>
+        
+        <button onclick="buyBuilding('organicFarm')">オーガニック農園を購入 (<span id="organicFarmCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('organicFarm')">オーガニック農園を売却 ( <span id='organicFarmSellPrice'>0</span>円)</button>
+        
+
+        <div>高級レストラン: <span id="expensiveRestaurantCount">0</span></div>
+        
+        <button onclick="buyBuilding('expensiveRestaurant')">高級レストランを購入 (<span id="expensiveRestaurantCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('expensiveRestaurant')">高級レストランを売却 ( <span id='expensiveRestaurantSellPrice'>0</span>円)</button>
+        
+
+        <div>テーマパーク: <span id="themeParkCount">0</span></div>
+        <button onclick="buyBuilding('themePark')">テーマパークを購入 (<span id="themeParkCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('themePark')">テーマパークを売却 ( <span id='themeParkSellPrice'>0</span>円)</button>
+
+
+        <div>金鉱山: <span id="goldMineCount">0</span></div>
+        <button onclick="buyBuilding('goldMine')">金鉱山を購入 (<span id="goldMineCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('goldMine')">金鉱山を売却 ( <span id='goldMineSellPrice'>0</span>円)</button>
+
+
+        <div>ロボット工場: <span id="robotFactoryCount">0</span></div>
+        <button onclick="buyBuilding('robotFactory')">ロボット工場を購入 (<span id="robotFactoryCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('robotFactory')">ロボット工場を売却 ( <span id='robotFactorySellPrice'>0</span>円)</button>
+
+
+
+        <div>銀行: <span id="banksCount">0</span></div>
+        <button onclick="buyBuilding('banks')">銀行を購入 (<span id="banksCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('banks')">銀行を売却 ( <span id='banksSellPrice'>0</span>円)</button>
+
+
+        <div>カジノリゾート: <span id="casinoResortCount">0</span></div>
+        <button onclick="buyBuilding('casinoResort')">カジノリゾートを購入 (<span id="casinoResortCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('casinoResort')">カジノリゾートを売却 ( <span id='casinoResortSellPrice'>0</span>円)</button>
+
+        <div>AI都市: <span id="aiCityCount">0</span></div>
+        <button onclick="buyBuilding('aiCity')">AI都市を購入 (<span id="aiCityCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('aiCity')">AI都市を売却 ( <span id='aiCitySellPrice'>0</span>円)</button>
+
+        <div>仮想国家: <span id="virtualNationStateCount">0</span></div>
+        <button onclick="buyBuilding('virtualNationState')">仮想国家を購入 (<span id="virtualNationStateCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('virtualNationState')">仮想国家を売却 ( <span id='virtualNationStateSellPrice'>0</span>円)</button>
+
+        <div>宇宙ステーション: <span id="spaceStationCount">0</span></div>
+        <button onclick="buyBuilding('spaceStation')">宇宙ステーションを購入 (<span id="spaceStationCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('spaceStation')">宇宙ステーションを売却 ( <span id='spaceStationSellPrice'>0</span>円)</button>
+
+
+
+        <div>ドリームマシン: <span id="dreamMachineCount">0</span></div>
+        <button onclick="buyBuilding('dreamMachine')">ドリームマシンを購入 (<span id="dreamMachineCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('dreamMachine')">ドリームマシンを売却 ( <span id='dreamMachineSellPrice'>0</span>円)</button>
+
+
+        <div>量子コンピュータセンター: <span id="quantumComputerCenterCount">0</span></div>
+        <button onclick="buyBuilding('quantumComputerCenter')">量子コンピュータセンターを購入 (<span id="quantumComputerCenterCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('quantumComputerCenter ')">量子コンピュータセンターを売却 ( <span id='quantumComputerCenterSellPrice'>0</span>円)</button>
+
+
+
+        <div>マインドコントロールタワー: <span id="mindControlTowerCount">0</span></div>
+        <button onclick="buyBuilding('mindControlTower')">マインドコントロールタワーを購入 (<span id="mindControlTowerCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('mindControlTower')">マインドコントロールタワーを売却 ( <span id='mindControlTowerSellPrice'>0</span>円)</button>
+
+
+        <div>人工惑星: <span id="artificialPlanetCount">0</span></div>
+        <button onclick="buyBuilding('artificialPlanet')">人工惑星を購入 (<span id="artificialPlanetCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('artificialPlanet')">人工惑星を売却 ( <span id='artificialPlanetSellPrice'>0</span>円)</button>
+
+        <div>宇宙コロニー: <span id="spaceColonyCount">0</span></div>
+        <button onclick="buyBuilding('spaceColony')">宇宙コロニーを購入 (<span id="spaceColonyCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('spaceColony')">宇宙コロニーを売却 ( <span id='spaceColonySellPrice'>0</span>円)</button>
+
+
+        
+        <div>タイムトラベル代理店: <span id="timeTravelAgencyCount">0</span></div>
+        <button onclick="buyBuilding('timeTravelAgency')">タイムトラベル代理店を購入 (<span id="timeTravelAgencyCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('timeTravelAgency')">タイムトラベル代理店を売却 ( <span id='timeTravelAgencySellPrice'>0</span>円)</button>
+        
+
+
+        <div>次元ゲート: <span id="dimensionGateCount">0</span></div>
+        <button onclick="buyBuilding('dimensionGate')">次元ゲートを購入 (<span id="dimensionGateCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('dimensionGate')">次元ゲートを売却 ( <span id='dimensionGateSellPrice'>0</span>円)</button>
+
+        <div>チーター: <span id="cheetahCount">0</span></div>
+        <button onclick="buyBuilding('cheetah')">チーターを購入 (<span id="cheetahCost">1000</span>円)</button>
+        <br/>
+        <button onclick="sellBuilding('cheetah')">チーターを売却 ( <span id='cheetahSellPrice'>0</span>円)</button>
+    </div>
+</div>
+
 <!-- 株式市場のセクション -->
 <div class="stock-market">
     <h2>株式市場</h2>
@@ -63,151 +207,8 @@
         <input type="number" id="sellStockAmount" min="1" placeholder="売却する株の数">
         <button onclick="sellStocks()">株を売却</button>
     </div>
-</div>
-
-
-
-<div id="gameLog" style="float: left; width: 100%; border: 1px solid #ccc; padding: 10px; height: 100px; overflow-y: auto; background-color: rgba(255, 255, 255, 0.9); /* 半透明の白色 */border-radius: 5px;  /* 角の丸み */">
-    <!-- ここにログが追加されます -->
-</div>
 
 </div>
-
-    <div class="right-side">
-        <div id="specific-container" style="height: 450px; overflow:auto;">
-            <div>クリッカーバイト: <span id="clickerBiteCount">0</span></div>
-            
-            
-            <button onclick="buyBuilding('clickerBite')">クリッカーバイトを購入 (<span id="clickerBiteCost">15</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('clickerBite')">クリッカーバイトを売却 ( <span id='clickerBiteSellPrice'>0</span>円)</button>
-
-
-            <div>レモネードスタンド: <span id="lemonadeStandCount">0</span></div>
-            
-            
-            <button onclick="buyBuilding('lemonadeStand')">レモネードスタンドを購入 (<span id="lemonadeStandCost">50</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('lemonadeStand')">レモネードスタンドを売却 ( <span id='lemonadeStandSellPrice'>0</span>円)</button>
-    
-
-            <div>デパート: <span id="retailStoreCount">0</span></div>
-            
-            
-            <button onclick="buyBuilding('retailStore')">デパートを購入 (<span id="retailStoreCost">200</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('retailStore')">デパートを売却 ( <span id='retailStoreSellPrice'>0</span>円)</button>
-
-            <div>オーガニック農園: <span id="organicFarmCount">0</span></div>
-            
-            <button onclick="buyBuilding('organicFarm')">オーガニック農園を購入 (<span id="organicFarmCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('organicFarm')">オーガニック農園を売却 ( <span id='organicFarmSellPrice'>0</span>円)</button>
-            
-
-            <div>高級レストラン: <span id="expensiveRestaurantCount">0</span></div>
-            
-            <button onclick="buyBuilding('expensiveRestaurant')">高級レストランを購入 (<span id="expensiveRestaurantCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('expensiveRestaurant')">高級レストランを売却 ( <span id='expensiveRestaurantSellPrice'>0</span>円)</button>
-            
-
-            <div>テーマパーク: <span id="themeParkCount">0</span></div>
-            <button onclick="buyBuilding('themePark')">テーマパークを購入 (<span id="themeParkCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('themePark')">テーマパークを売却 ( <span id='themeParkSellPrice'>0</span>円)</button>
-
-
-            <div>金鉱山: <span id="goldMineCount">0</span></div>
-            <button onclick="buyBuilding('goldMine')">金鉱山を購入 (<span id="goldMineCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('goldMine')">金鉱山を売却 ( <span id='goldMineSellPrice'>0</span>円)</button>
-
-
-            <div>ロボット工場: <span id="robotFactoryCount">0</span></div>
-            <button onclick="buyBuilding('robotFactory')">ロボット工場を購入 (<span id="robotFactoryCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('robotFactory')">ロボット工場を売却 ( <span id='robotFactorySellPrice'>0</span>円)</button>
-
-
-
-            <div>銀行: <span id="banksCount">0</span></div>
-            <button onclick="buyBuilding('banks')">銀行を購入 (<span id="banksCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('banks')">銀行を売却 ( <span id='banksSellPrice'>0</span>円)</button>
-
-
-            <div>カジノリゾート: <span id="casinoResortCount">0</span></div>
-            <button onclick="buyBuilding('casinoResort')">カジノリゾートを購入 (<span id="casinoResortCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('casinoResort')">カジノリゾートを売却 ( <span id='casinoResortSellPrice'>0</span>円)</button>
-
-            <div>AI都市: <span id="aiCityCount">0</span></div>
-            <button onclick="buyBuilding('aiCity')">AI都市を購入 (<span id="aiCityCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('aiCity')">AI都市を売却 ( <span id='aiCitySellPrice'>0</span>円)</button>
-
-            <div>仮想国家: <span id="virtualNationStateCount">0</span></div>
-            <button onclick="buyBuilding('virtualNationState')">仮想国家を購入 (<span id="virtualNationStateCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('virtualNationState')">仮想国家を売却 ( <span id='virtualNationStateSellPrice'>0</span>円)</button>
-
-            <div>宇宙ステーション: <span id="spaceStationCount">0</span></div>
-            <button onclick="buyBuilding('spaceStation')">宇宙ステーションを購入 (<span id="spaceStationCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('spaceStation')">宇宙ステーションを売却 ( <span id='spaceStationSellPrice'>0</span>円)</button>
-
-
-
-            <div>ドリームマシン: <span id="dreamMachineCount">0</span></div>
-            <button onclick="buyBuilding('dreamMachine')">ドリームマシンを購入 (<span id="dreamMachineCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('dreamMachine')">ドリームマシンを売却 ( <span id='dreamMachineSellPrice'>0</span>円)</button>
-
-
-            <div>量子コンピュータセンター: <span id="quantumComputerCenterCount">0</span></div>
-            <button onclick="buyBuilding('quantumComputerCenter')">量子コンピュータセンターを購入 (<span id="quantumComputerCenterCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('quantumComputerCenter ')">量子コンピュータセンターを売却 ( <span id='quantumComputerCenterSellPrice'>0</span>円)</button>
-
-
-
-            <div>マインドコントロールタワー: <span id="mindControlTowerCount">0</span></div>
-            <button onclick="buyBuilding('mindControlTower')">マインドコントロールタワーを購入 (<span id="mindControlTowerCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('mindControlTower')">マインドコントロールタワーを売却 ( <span id='mindControlTowerSellPrice'>0</span>円)</button>
-
-
-            <div>人工惑星: <span id="artificialPlanetCount">0</span></div>
-            <button onclick="buyBuilding('artificialPlanet')">人工惑星を購入 (<span id="artificialPlanetCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('artificialPlanet')">人工惑星を売却 ( <span id='artificialPlanetSellPrice'>0</span>円)</button>
-
-            <div>宇宙コロニー: <span id="spaceColonyCount">0</span></div>
-            <button onclick="buyBuilding('spaceColony')">宇宙コロニーを購入 (<span id="spaceColonyCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('spaceColony')">宇宙コロニーを売却 ( <span id='spaceColonySellPrice'>0</span>円)</button>
-
-
-            
-            <div>タイムトラベル代理店: <span id="timeTravelAgencyCount">0</span></div>
-            <button onclick="buyBuilding('timeTravelAgency')">タイムトラベル代理店を購入 (<span id="timeTravelAgencyCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('timeTravelAgency')">タイムトラベル代理店を売却 ( <span id='timeTravelAgencySellPrice'>0</span>円)</button>
-            
-
-
-            <div>次元ゲート: <span id="dimensionGateCount">0</span></div>
-            <button onclick="buyBuilding('dimensionGate')">次元ゲートを購入 (<span id="dimensionGateCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('dimensionGate')">次元ゲートを売却 ( <span id='dimensionGateSellPrice'>0</span>円)</button>
-
-            <div>チーター: <span id="cheetahCount">0</span></div>
-            <button onclick="buyBuilding('cheetah')">チーターを購入 (<span id="cheetahCost">1000</span>円)</button>
-            <br/>
-            <button onclick="sellBuilding('cheetah')">チーターを売却 ( <span id='cheetahSellPrice'>0</span>円)</button>
-        </div>
-    <div>
 
 
 <script src="game.js"></script>

@@ -11,7 +11,9 @@ body {
     border-radius: 10px; /* 角を丸める */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影を追加 */
     margin: 5px 0; /* 上下の余白 */
+    text-align: center; /* テキストを中央に寄せる */
 }
+
 
 
 
@@ -41,16 +43,23 @@ body {
 }
 
 .money-container {
-    text-align: center;  /* テキストを中央揃えにする */
-    font-size: 24px;     /* フォントサイズを大きくする */
-    color: #4CAF50;      /* テキストの色を緑にする */
-    margin-top: 20px;    /* 上部の余白を追加 */
-    font-weight: bold;   /* フォントを太字にする */
+    text-align: center; /* テキストを中央揃えにする */
+    font-size: 24px; /* フォントサイズを大きくする */
+    color: #4CAF50; /* テキストの色を緑にする */
+    margin-top: 20px; /* 上部の余白を追加 */
+    font-weight: bold; /* フォントを太字にする */
     background-color: rgba(255, 255, 255, 0.9); /* 半透明の白色 */
-    padding: 10px;       /* パディングを追加 */
-    border-radius: 5px;  /* 角を丸める */
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);  /* 影を追加 */
+    padding: 10px; /* パディングを追加 */
+    border-radius: 5px; /* 角を丸める */
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2); /* 影を追加 */
+
+    /* 以下を追加 */
+    position: fixed; /* 位置を固定 */
+    top: 10%; /* 上から50%の位置 */
+    left: 50%; /* 左から50%の位置 */
+    transform: translate(-50%, -50%); /* 中央に正確に配置 */
 }
+
 
 .center-container {
     display: flex;        /* Flexboxを使用 */
