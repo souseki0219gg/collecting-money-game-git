@@ -148,32 +148,26 @@ let stockPrice = 20; // 株の初期価格
 let playerStocks = 0; // プレイヤーが持っている株の数
 
 const stockPricePatterns = {
-    rising: { chance: 20, change: () => Math.floor(Math.random() * 10 + 5) },
-    falling: { chance: 20, change: () => -Math.floor(Math.random() * 10 + 5) },
-    volatile: { chance: 25, change: () => Math.floor(Math.random() * 20) - 10 },
-    stable: { chance: 25, change: () => Math.floor(Math.random() * 5) - 2 },
-    crash: { chance: 5, change: () => -Math.floor(Math.random() * 30 + 20) }, // 新しいパターン: 大暴落
-    surge: { chance: 5, change: () => Math.floor(Math.random() * 30 + 20) } // 新しいパターン: 大暴騰
+    rising: { chance: 20, change: () => Math.floor(Math.random() * 5 + 1) }, // 小幅上昇
+    falling: { chance: 20, change: () => -Math.floor(Math.random() * 5 + 1) }, // 小幅下落
+    volatile: { chance: 25, change: () => Math.floor(Math.random() * 10) - 5 }, // 変動幅中程度
+    stable: { chance: 25, change: () => Math.floor(Math.random() * 3) - 1 }, // 安定
+    crash: { chance: 2, change: () => -Math.floor(Math.random() * 15 + 10) }, // 大暴落（確率を下げる）
+    surge: { chance: 2, change: () => Math.floor(Math.random() * 15 + 10) } // 大暴騰（確率を下げる）
 };
+
 
 
 let currentPattern = "stable";
 
 
-// 季節ごとの株価変動幅
-const stockPriceFluctuation = {
-    "春": 5,
-    "夏": 10,
-    "秋": 15,
-    "冬": 20
-};
 
 function updateStockPrice() {
     let pattern = stockPricePatterns[currentPattern];
     let change = pattern.change();
 
     stockPrice += change;
-    stockPrice = Math.max(1, stockPrice);
+    stockPrice = Math.max(5, stockPrice);
 
     gameLog.push(`株価が更新されました: ${stockPrice}`);
     displayLog();
@@ -216,26 +210,32 @@ let currentSeason = seasons[0];  // 初期の季節を春とする
 let currentWeather = weatherBySeason[currentSeason][0];  // 初期の天気を季節に合わせて設定
 
 // 季節を変更する関数
+let currentYear = 1;  // 現在の年
+
 function changeSeason() {
     const previousSeason = currentSeason;
     const currentIndex = seasons.indexOf(currentSeason);
     currentSeason = seasons[(currentIndex + 1) % seasons.length];
 
-    // 季節を変更する関数の中で...
-if (previousSeason !== currentSeason) {
-    gameLog.push(`季節が ${previousSeason} から ${currentSeason} に変わりました。`);
-    displayLog();  // ログを即座に更新
+    if (previousSeason === '冬' && currentSeason === '春') {
+        currentYear++;  // 年が新しくなった
+        playerStocks = 0;  // 株券をリセット
+        gameLog.push(`新しい年になりました。株券が無効になりました。`);
+        displayLog();
+    }
+
+    if (previousSeason !== currentSeason) {
+        gameLog.push(`季節が ${previousSeason} から ${currentSeason} に変わりました。`);
+        displayLog();
+        currentPattern = selectNewPattern();  // 新しい株価パターンを選択
+        console.log(`新しい株価パターン: ${currentPattern}`);
+    }
+
+    changeWeather();
 }
 
-if (previousSeason !== currentSeason) {
-    playerStocks = 0;
-    gameLog.push(`新しい季節になりました。株券が無効になりました。`);
-    displayLog();
+// 他の関数は変更なし
 
-}
-
-    changeWeather();  // 季節が変わるたびに天気も変える
-}
 
 function buyStocks() {
     let amountToBuy = parseInt(document.getElementById("stockAmount").value);
@@ -296,7 +296,7 @@ if (previousWeather !== currentWeather) {
 setInterval(updateStockPrice, 5 * 60 * 1000); // 5分ごとに株価を更新
 
 // 例: 10分ごとに季節を変更
-setInterval(changeSeason, 30 * 60 * 1000);
+setInterval(changeSeason, 15 * 60 * 1000);
 
 // 例: 1分ごとに天気を変更
 setInterval(changeWeather, 3 * 60 * 1000);
@@ -401,6 +401,13 @@ function addMessageToLog(message) {
     displayLog();  // ログを即座に更新
 }
 
+function displayLog() {
+    const logElement = document.getElementById("gameLog");
+    logElement.innerHTML = gameLog.join('<br>');
+
+    // スクロール位置を最下部に設定
+    logElement.scrollTop = logElement.scrollHeight;
+}
 
 
 
@@ -736,7 +743,7 @@ function autoSave() {
 }
 
 // 30秒ごとに自動セーブ
-setInterval(autoSave, 30000); // 30000ミリ秒（30秒）で設定
+setInterval(autoSave, 10000); // 30000ミリ秒（30秒）で設定
 
 
 window.onload = function() {
@@ -884,6 +891,8 @@ function resetGame() {
     stockPrice = 20; // 株の初期価格
     currentPattern = "stable";
     priceIndex = 1.0;  // 初期の物価指数
+    currentSeason = '春';
+    currentWeather = '晴れ';
     maxProduction = 0; // 最大生産数をリセット
     totalProduction = 0; // 総合生産数をリセット
     // その他のゲーム関連変数もここでリセット
