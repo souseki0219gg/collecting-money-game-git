@@ -153,6 +153,13 @@ body {
         margin-bottom: 20px; /* 下部の余白を追加 */
     }
 
+    #circle {
+        width: 110px; /* 幅をさらに小さく設定 */
+        height: 110px; /* 高さをさらに小さく設定 */
+        top: 50%; /* 位置を下に移動 */
+        /* 他のスタイルはそのままにする */
+    }
+
     #circle:active {
         transform: translate(-50%, -50%) scale(0.85); /* サイズを縮小 */
         background-color: darkgoldenrod; /* 色を変更 */
@@ -178,6 +185,7 @@ body {
         margin-bottom: 10px;
         border-radius: 5px;
         width: 100%;
+        font-size: 12px; /* テキストサイズを小さく設定 */
     }
     
     #gameLog {
